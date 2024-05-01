@@ -24,4 +24,16 @@ class InputCheckerTest {
         assertTrue(actual)
         assertEquals(true, actual)
     }
+    @Test
+    fun isValidTest_givenLessThan3_returnFalse() {
+        val inputChecker = InputChecker()
+        val actual = inputChecker.isValid("ab")
+        assertEquals(false, actual)
+    }
+    @Test
+    fun isValidTest_givenAlphaNumeric_returnTrue() {
+        val inputChecker = InputChecker()
+        val actual = inputChecker.isValid("abc123")
+        assertEquals(true, actual)
+    }
 }
