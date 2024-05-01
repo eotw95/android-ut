@@ -4,6 +4,7 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 
 class InputCheckerTest {
@@ -39,4 +40,7 @@ class InputCheckerTest {
     fun isValidTest_givenNull_throwException() {
         inputChecker.isValid(null)
     }
+    @Ignore("write ignore reason")
+    @Test
+    fun temporarySkipTest() {}
 }
