@@ -35,4 +35,8 @@ class InputCheckerTest {
         val actual = inputChecker.isValid("abc123")
         assertEquals(true, actual)
     }
+    @Test(expected = IllegalArgumentException::class)
+    fun isValidTest_givenNull_throwException() {
+        inputChecker.isValid(null)
+    }
 }
