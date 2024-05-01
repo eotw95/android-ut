@@ -7,9 +7,11 @@ import org.junit.Before
 import org.junit.Test
 
 class InputCheckerTest {
+    private lateinit var inputChecker: InputChecker
 
     @Before
     fun setUp() {
+        inputChecker = InputChecker()
     }
 
     @After
@@ -19,20 +21,17 @@ class InputCheckerTest {
     // assertThat()はDeprecatedなので使用しない
     @Test
     fun isValidTest() {
-        val inputChecker = InputChecker()
         val actual = inputChecker.isValid("foo")
         assertTrue(actual)
         assertEquals(true, actual)
     }
     @Test
     fun isValidTest_givenLessThan3_returnFalse() {
-        val inputChecker = InputChecker()
         val actual = inputChecker.isValid("ab")
         assertEquals(false, actual)
     }
     @Test
     fun isValidTest_givenAlphaNumeric_returnTrue() {
-        val inputChecker = InputChecker()
         val actual = inputChecker.isValid("abc123")
         assertEquals(true, actual)
     }
