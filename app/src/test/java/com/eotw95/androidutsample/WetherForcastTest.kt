@@ -7,9 +7,14 @@ import org.junit.Before
 import org.junit.Test
 
 class WeatherForecastTest {
+    private lateinit var weatherForecast: WeatherForecast
+    private lateinit var weatherRecorder: MockWeatherRecord
 
     @Before
     fun setUp() {
+        val satellite = StubSatellite(Weather.Rainy)
+        weatherRecorder = MockWeatherRecord()
+        weatherForecast = WeatherForecast(satellite, weatherRecorder)
     }
 
     @After
@@ -18,9 +23,12 @@ class WeatherForecastTest {
 
     @Test
     fun shouldBringUmbrella_givenSunny_returnTrue() {
-        val satellite = StubSatellite(Weather.Rainy)
-        val weatherForecast = WeatherForecast(satellite)
         val actual = weatherForecast.shouldBringUmbrella()
         assertEquals(true, actual)
+    }
+    @Test
+    fun recordCurrentWeather_assertCalled() {
+        weatherForecast.recordCurrentWeather()
+        assertEquals(true, weatherRecorder.isCalled)
     }
 }
