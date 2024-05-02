@@ -11,7 +11,7 @@ class WeatherForecast(
         }
     }
     fun recordCurrentWeather() {
-//        weatherRecorder.record(satellite.getWeather())
+        weatherRecorder.record(satellite.getWeather(0.0, 0.0))
     }
 }
 

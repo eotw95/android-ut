@@ -8,6 +8,8 @@ import org.junit.Test
 import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.times
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 class WeatherForecastTest {
@@ -28,9 +30,9 @@ class WeatherForecastTest {
                 longitude in 122.933872..153.980789) return@thenAnswer Weather.Sunny
             else return@thenAnswer Weather.Rainy
         }
-        whenever(satellite.getWeather(0.0, 0.0))
-            .thenThrow(IllegalArgumentException::class.java)
-        weatherRecorder = MockWeatherRecord()
+//        whenever(satellite.getWeather(0.0, 0.0))
+//            .thenThrow(IllegalArgumentException::class.java)
+        weatherRecorder = mock(name = "MockRecorder")
         weatherForecast = WeatherForecast(satellite, weatherRecorder)
     }
 
@@ -47,6 +49,11 @@ class WeatherForecastTest {
     fun recordCurrentWeather_assertCalled() {
         weatherForecast.recordCurrentWeather()
         assertEquals(true, weatherRecorder.isCalled)
+    }
+    @Test
+    fun recordCurrentWeather_verifyCalled_record() {
+        weatherForecast.recordCurrentWeather()
+        verify(weatherRecorder, times(1)).record(any())
     }
     @Test
     fun shouldBringUmbrella_givenInJapan_returnFalse() {
