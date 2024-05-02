@@ -53,7 +53,7 @@ class WeatherForecastTest {
     @Test
     fun recordCurrentWeather_verifyCalled_record() {
         weatherForecast.recordCurrentWeather()
-        verify(weatherRecorder, times(1)).record(any())
+        verify(weatherRecorder, times(1)).record(eq(Weather.Rainy))
     }
     @Test
     fun shouldBringUmbrella_givenInJapan_returnFalse() {
