@@ -4,19 +4,19 @@ class WeatherForecast(
     private val satellite: Satellite,
     private val weatherRecorder: WeatherRecorder
 ) {
-    fun shouldBringUmbrella(): Boolean {
-        return when (satellite.getWeather()) {
+    fun shouldBringUmbrella(latitude: Double, longitude: Double): Boolean {
+        return when (satellite.getWeather(latitude, longitude)) {
             Weather.Sunny, Weather.Cloudy -> false
             Weather.Rainy -> true
         }
     }
     fun recordCurrentWeather() {
-        weatherRecorder.record(satellite.getWeather())
+//        weatherRecorder.record(satellite.getWeather())
     }
 }
 
 open class Satellite {
-    open fun getWeather(): Weather {
+    open fun getWeather(latitude: Double, longitude: Double): Weather {
         // 何かしらの実装がある想定で、仮でSunnyを返すようにしている
         return Weather.Sunny
     }
@@ -39,7 +39,7 @@ enum class Weather {
  *  スタブクラス作るためにオリジナルのclassのアクセス修飾子をopenに変更しているので、良くない
  */
 class StubSatellite(private val weather: Weather): Satellite() {
-    override fun getWeather(): Weather {
+    override fun getWeather(latitude: Double, longitude: Double): Weather {
         return weather
     }
 }
