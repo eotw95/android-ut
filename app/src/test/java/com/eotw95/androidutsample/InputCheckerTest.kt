@@ -35,6 +35,16 @@ class InputCheckerTest {
         assertEquals(false, actual)
     }
     @Test
+    fun isValidTest_givenAlphabetic_returnTrue() {
+        val actual = inputChecker.isValid("abc")
+        assertEquals(true, actual)
+    }
+    @Test
+    fun isValidTest_givenNumeric_returnTrue() {
+        val actual = inputChecker.isValid("123")
+        assertEquals(true, actual)
+    }
+    @Test
     fun isValidTest_givenAlphaNumeric_returnTrue() {
         val actual = inputChecker.isValid("abc123")
         assertEquals(true, actual)
@@ -42,6 +52,20 @@ class InputCheckerTest {
     @Test(expected = IllegalArgumentException::class)
     fun isValidTest_givenNull_throwException() {
         inputChecker.isValid(null)
+    }
+    @Test
+    fun isValidTest_givenInvalidCharacter_returnFalse() {
+        val invalidTexts = listOf(
+            "abc@123",
+            "@@@",
+            "1$(abc)",
+            "000_abc",
+            "{abc}123"
+        )
+        invalidTexts.forEach {
+            val actual = inputChecker.isValid(it)
+            assertEquals(false, actual)
+        }
     }
     @Ignore("write ignore reason")
     @Test
