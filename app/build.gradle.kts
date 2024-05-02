@@ -61,4 +61,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // mockito-kotlin
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.3.1")
 }
